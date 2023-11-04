@@ -1,0 +1,81 @@
+const nodemailer = require('nodemailer');
+
+async function main() {
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+   
+    secure: true,
+    auth: {
+      user: 'mr.hatab055@gamil.com',
+      pass: 'fjwzlqekffvlqobe'
+    }
+  });
+
+  const sender = 'mr.hatab055@gamil.com';
+  const email_to = ['mr.hatab055@outlook.com']; 
+  const mailOptions = {
+    from: sender,
+    to: email_to,
+    subject: 'Node.js Checkpoint',
+    text: 'Hello it\'s Eslam Hatab Dev.\nI want to inform you that you have completed the Node.js checkpoint successfully.\nThanks for your hard effort!',
+  };
+
+  // Send the email
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+      console.log('The email has been sent from "'+sender+'" to "'+email_to+'".');
+    }
+  });
+}
+
+main()
+.catch(err => console.log(err));
+
+//----------------------------
+const nodemailer = require('nodemailer');
+
+async function main() {
+  const transporter = nodemailer.createTransport({
+  
+    service: 'gmail',
+
+    secure: true,
+    auth: {
+      user: 'mr.hatab055@gamil.com',
+      pass: 'fjwzlqekffvlqobe'
+    }
+  });
+
+  // Create a mail options object
+  const sender = 'mr.hatab055@gamil.com';
+  const email_to = ['mr.hatab055@outlook.com'];
+  const html = "<h2>Hello it\'s <b style='color: #00308F;'>Hatab</b>.</h2>";
+  const mailOptions = {
+    from: sender,
+    to: email_to,
+    subject: 'Node.js Checkpoint',
+    html: html,
+    attachments: [{
+      filename: 'nodejs_checkpoint.png',
+      path: './nodejs_checkpoint.png',
+      cid: 'unique@_nodejs_checkpoint' // Sets content ID
+    }],
+  };
+
+  // Send the email
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+      console.log('The email has been sent from "'+sender+'" to "'+email_to+'".');
+    }
+  });
+}
+
+main()
+.catch(err => console.log(err));
